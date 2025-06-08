@@ -2,12 +2,14 @@
 
 'use client'
 
+import { useAuth } from "@/context/AuthContext"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 
 export default function GoTo() {
+    const { currentUser, logout } = useAuth()
 
-    const isAuthenticated = false
+    const isAuthenticated = !!currentUser
 
     const path = usePathname()
 
@@ -24,7 +26,7 @@ export default function GoTo() {
                 </>
             )}
             {(isAuthenticated && path == '/dashboard') && (
-                <button>Sair</button>
+                <button onClick={logout}>Sair</button>
             )}
         </div>
     )
