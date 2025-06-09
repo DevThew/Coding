@@ -10,7 +10,7 @@ export default function SubscriptionSummary() {
 
     return (
         <section>
-            <h2>My Subscriptions</h2>
+            <h2>Assinaturas</h2>
             <div className="analytics-card">
 
 {/* make emojis be sequential part*/}

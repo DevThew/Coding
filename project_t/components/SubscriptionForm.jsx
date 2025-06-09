@@ -18,18 +18,18 @@ export default function SubscriptionForm(props) {
 
     return (
         <section>
-            <h2>Add a new subscription</h2>
+            <h2>Adicionar assinatura</h2>
 
             <form onSubmit={handleFormSumbit}>
                 <label>
-                    <span>Subscription Name</span>
-                    <input value={formData.name} onChange={handleChangeInput} type="text" name="name" placeholder="e.g. Netflix, Spotify, AWS Hosting" required />
+                    <span>Nome</span>
+                    <input value={formData.name} onChange={handleChangeInput} type="text" name="name" placeholder="Netflix, Spotify, Academia" required />
                 </label>
 
                 <label>
-                    <span>Category</span>
+                    <span>Categoria</span>
                     <select value={formData.category} onChange={handleChangeInput} name="category">
-                        {['Entertainment', 'Music', 'Software', 'Web Services', 'Health & Fitness', 'Other'].map((cat, catIndex) => {
+                        {['Diversão', 'Musica', 'Software', 'Serviços Online', 'Saúde', 'Outros'].map((cat, catIndex) => {
                             return (
                                 <option key={catIndex}>
                                     {cat}
@@ -41,14 +41,14 @@ export default function SubscriptionForm(props) {
 
 
                 <label>
-                    <span>Cost</span>
-                    <input value={formData.cost} onChange={handleChangeInput} type="number" name="cost" step="0.01" placeholder="e.g. 12.00" required />
+                    <span>Custo</span>
+                    <input value={formData.cost} onChange={handleChangeInput} type="number" name="cost" step="0.01" placeholder="12.00" required />
                 </label>
 
                 <label>
-                    <span>Currency</span>
+                    <span>Moeda</span>
                     <select value={formData.currency} onChange={handleChangeInput} name="currency">
-                        {['USD', 'EUR', 'GBP', 'NZD', "AUD", "BRL", 'Other'].map((cur, curIndex) => {
+                        {[ "BRL", 'USD', 'EUR', 'GBP', 'NZD', "AUD",'Outro'].map((cur, curIndex) => {
                             return (
                                 <option key={curIndex}>{cur}</option>
                             )
@@ -57,9 +57,9 @@ export default function SubscriptionForm(props) {
                 </label>
 
                 <label>
-                    <span>Billing Frequency</span>
+                    <span>Frequencia</span>
                     <select value={formData.billingFrequency} onChange={handleChangeInput} name="billingFrequency">
-                        {['Monthly', 'Yearly', 'Quarterly', 'One-time'].map((cur, curIndex) => {
+                        {['Mensal', 'Anual', 'Quadrimestre', 'Unico'].map((cur, curIndex) => {
                             return (
                                 <option key={curIndex}>{cur}</option>
                             )
@@ -69,9 +69,9 @@ export default function SubscriptionForm(props) {
 
 
                 <label>
-                    <span>Payment Method</span>
+                    <span>Método de Pagamento</span>
                     <select value={formData.paymentMethod} onChange={handleChangeInput} name="paymentMethod">
-                        {['Credit Card', 'Debit Card', 'Paypal', 'Bank Transfer', 'Other'].map((cur, curIndex) => {
+                        {['Crédito', 'Débito', 'Pix', 'Transferência', 'Outros'].map((cur, curIndex) => {
                             return (
                                 <option key={curIndex}>{cur}</option>
                             )
@@ -80,14 +80,14 @@ export default function SubscriptionForm(props) {
                 </label>
 
                 <label>
-                    <span>Subscription Start Date</span>
+                    <span>Inicio da Assinatura</span>
                     <input value={formData.startDate} onChange={handleChangeInput} type="date" name="startDate" required />
                 </label>
 
                 <label>
                     <span>Status</span>
                     <select value={formData.status} onChange={handleChangeInput} name="status">
-                        {['Active', 'Paused', 'Cancelled'].map((cur, curIndex) => {
+                        {['Ativo', 'Pausado', 'Cancelado'].map((cur, curIndex) => {
                             return (
                                 <option key={curIndex}>{cur}</option>
                             )
@@ -97,14 +97,14 @@ export default function SubscriptionForm(props) {
 
 
                 <label className="fat-column">
-                    <span>Notes</span>
-                    <textarea value={formData.notes} onChange={handleChangeInput} name="notes" placeholder="e.g. Shared with family, includes cloud storage" />
+                    <span>Notas</span>
+                    <textarea value={formData.notes} onChange={handleChangeInput} name="notes" placeholder="Comentário a respeito da assinatura" />
                 </label>
 
                 <div className="fat-column form-submit-btns">
-                    <button onClick={closeInput}>Cancel</button>
+                    <button onClick={closeInput}>Cancelar</button>
                     <button type="submit">
-                        Add Subscription
+                        Confirmar
                     </button>
                 </div>
             </form>

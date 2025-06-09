@@ -9,16 +9,16 @@ import { Suspense, useState } from "react";
 
 const blankSubscription = {
     name: '',
-    category: 'Web Services',
+    category: 'Serviços Online',
     cost: '',
-    currency: 'USD',
-    billingFrequency: 'Monthly',
+    currency: 'BRL',
+    billingFrequency: 'Mensal',
     nextBillingData: '',
-    paymentMethod: 'Credit Card',
+    paymentMethod: 'Crédito',
     startDate: '',
     renewalType: '',
     notes: '',
-    status: 'Active'
+    status: 'Ativo'
 }
 
 export default function DashboardPage() {
@@ -57,13 +57,13 @@ export default function DashboardPage() {
 
     if (loading) {
         return (
-            <p>Loading...</p>
+            <p>Carregando...</p>
         )
     }
 
     if (!isAuthenticated) {
         return (
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<p>Carregando...</p>}>
                 <Login />
             </Suspense>
         )

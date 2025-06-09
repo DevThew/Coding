@@ -1,36 +1,36 @@
 export const calculateSubscriptionMetrics = (subscriptions) => {
     // Filter active subscriptions
-    const active_subscriptions = subscriptions.filter(sub => sub.status === "Active");
+    const assinaturas_ativas = subscriptions.filter(sub => sub.status === "Active");
 
     // Initialize metrics
-    let total_monthly_cost = 0;
-    let total_yearly_cost = 0;
-    let category_spending = {};
-    let upcoming_billing_count = 0;
-    let most_expensive_subscription = null;
+    let total_custo_mensal = 0;
+    let total_custo_anual = 0;
+    let categoria_gasta = {};
+    let futuros_pagamentos = 0;
+    let assinatura_mais_cara = null;
 
     const today = new Date();
     const next_week = new Date();
     next_week.setDate(today.getDate() + 7);
 
-    active_subscriptions.forEach(sub => {
+    assinaturas_ativas.forEach(sub => {
         // Ensure numeric values are properly parsed
         const cost = parseFloat(sub.cost) || 0;
         const billingFrequency = sub.billingFrequency;
 
         const monthly_cost = billingFrequency === "Yearly" ? cost / 12 : cost;
-        total_monthly_cost += monthly_cost;
-        total_yearly_cost += billingFrequency === "Yearly" ? cost : cost * 12;
+        total_custo_mensal += monthly_cost;
+        total_custo_anual += billingFrequency === "Yearly" ? cost : cost * 12;
 
         // Track category spending
-        if (!category_spending[sub.category]) {
-            category_spending[sub.category] = 0;
+        if (!categoria_gasta[sub.category]) {
+            categoria_gasta[sub.category] = 0;
         }
-        category_spending[sub.category] += cost;
+        categoria_gasta[sub.category] += cost;
 
         // Determine most expensive subscription
-        if (!most_expensive_subscription || cost > most_expensive_subscription.cost) {
-            most_expensive_subscription = sub;
+        if (!assinatura_mais_cara || cost > assinatura_mais_cara.cost) {
+            assinatura_mais_cara = sub;
         }
 
         // Calculate next billing date
@@ -46,24 +46,24 @@ export const calculateSubscriptionMetrics = (subscriptions) => {
 
         // Count upcoming billing within the next 7 days
         if (next_billing_date >= today && next_billing_date <= next_week) {
-            upcoming_billing_count++;
+            futuros_pagamentos++;
         }
     });
 
     // Calculate average monthly spending
-    const average_monthly_spending = active_subscriptions.length > 0 ? total_monthly_cost / active_subscriptions.length : 0;
+    const média_custo_mensal = assinaturas_ativas.length > 0 ? total_custo_mensal / assinaturas_ativas.length : 0;
 
     // Find the top spending category
-    let top_spending_category = Object.entries(category_spending).reduce((top, current) => current[1] > top[1] ? current : top, ["", 0])[0] || "None";
+    let categoria_de_maior_custo = Object.entries(categoria_gasta).reduce((top, current) => current[1] > top[1] ? current : top, ["", 0])[0] || "Nenhum";
 
     return {
-        total_monthly_cost: total_monthly_cost.toFixed(2),
-        total_yearly_cost: total_yearly_cost.toFixed(2),
-        average_monthly_spending: average_monthly_spending.toFixed(2),
-        active_subscriptions: active_subscriptions.length,
-        top_spending_category,
-        upcoming_billing_count,
-        most_expensive_subscription: most_expensive_subscription ? most_expensive_subscription.name : "None"
+        total_custo_mensal: total_custo_mensal.toFixed(2),
+        total_custo_anual: total_custo_anual.toFixed(2),
+        média_custo_mensal: média_custo_mensal.toFixed(2),
+        assinaturas_ativas: assinaturas_ativas.length,
+        categoria_de_maior_custo,
+        futuros_pagamentos,
+        assinatura_mais_cara: assinatura_mais_cara ? assinatura_mais_cara.name : "Nenhum"
     };
 };
 

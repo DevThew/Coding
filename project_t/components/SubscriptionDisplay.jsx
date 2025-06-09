@@ -11,7 +11,7 @@ export default function SubscriptionsDisplay(props) {
 
     return (
         <section>
-            <h2>Your Subscriptions</h2>
+            <h2>Minhas Assinaturas</h2>
             <div className="card-container">
 
                 {userData.subscriptions.map((sub, subIndex) => {
@@ -29,18 +29,18 @@ export default function SubscriptionsDisplay(props) {
                             <p><i>{category}</i></p>
 
                             <div className="sub-cost">
-                                <h2>${cost}</h2>
+                                <h2>R${cost}</h2>
                                 <p>{currency}</p>
                             </div>
-                            <small>per {billingFrequency}</small>
+                            <small>cada {billingFrequency}</small>
 
                             <div className="sub-renewal">
                                 <div>
-                                    <p>Started</p>
+                                    <p>Inicio</p>
                                     <h4>{startDate}</h4>
                                 </div>
                                 <div>
-                                    <p>Due</p>
+                                    <p>Vencimento</p>
                                     <h4>{getDaysUntilNextCharge(startDate, billingFrequency)}</h4>
                                 </div>
                             </div>
@@ -52,13 +52,13 @@ export default function SubscriptionsDisplay(props) {
                                     handleEditSubscription(subIndex)
                                 }} className="button-card">
                                     <i className="fa-solid fa-pen-to-square"></i>
-                                    Edit
+                                    Editar
                                 </button>
                                 <button onClick={() => {
                                     handleDeleteSubscription(subIndex)
                                 }} className="button-card">
                                     <i className="fa-solid fa-trash"></i>
-                                    Delete
+                                    Deletar
                                 </button>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ export default function SubscriptionsDisplay(props) {
                 })}
                 <button onClick={handleShowInput} className="button-card add-subscriptions">
                     <i className="fa-solid fa-plus"></i>
-                    <h5>Add new subscription</h5>
+                    <h5>Adicionar nova assinatura</h5>
                 </button>
             </div>
         </section>
